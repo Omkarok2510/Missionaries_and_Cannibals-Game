@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missionaries and Cannibals</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #87CEEB;
+        }
+        .game-container {
+            position: relative;
+            width: 800px;
+            height: 400px;
+            margin: auto;
+            border: 2px solid black;
+            background-color: #ADD8E6;
+            overflow: hidden;
+        }
+        .river {
+            position: absolute;
+            width: 100%;
+            height: 100px;
+            background: blue;
+            top: 50%;
+        }
+        .boat {
+            position: absolute;
+            width: 100px;
+            height: 50px;
+            background: brown;
+            bottom: 50px;
+            transition: transform 1s ease-in-out;
+        }
+        .left {
+            left: 10%;
+        }
+        .right {
+            left: 70%;
+        }
+        .character {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            cursor: pointer;
+        }
+        .missionary {
+            background: url('./missionary.png') no-repeat center/contain;
+        }
+        .cannibal {
+            background: url('./cannibal.png') no-repeat center/contain;
+        }
+    </style>
+</head>
+<body>
+    <h1>Missionaries and Cannibals Game</h1>
+    <button onclick="startGame()">Start Game</button>
+    <div class="game-container" id="game">
+        <div class="river"></div>
+        <div class="boat left" id="boat" onclick="moveBoat()"></div>
+        <div class="character missionary" id="m1" style="top:100px; left:50px;" onclick="moveCharacter('m1')"></div>
+        <div class="character missionary" id="m2" style="top:100px; left:100px;" onclick="moveCharacter('m2')"></div>
+        <div class="character missionary" id="m3" style="top:100px; left:150px;" onclick="moveCharacter('m3')"></div>
+        <div class="character cannibal" id="c1" style="top:200px; left:50px;" onclick="moveCharacter('c1')"></div>
+        <div class="character cannibal" id="c2" style="top:200px; left:100px;" onclick="moveCharacter('c2')"></div>
+        <div class="character cannibal" id="c3" style="top:200px; left:150px;" onclick="moveCharacter('c3')"></div>
+    </div>
+    
+    <script>
+        let boatOnRight = false;
+        let charactersOnBoat = [];
+
+        function startGame() {
+            document.getElementById("game").style.display = "block";
+        }
+
+        function moveBoat() {
+            if (charactersOnBoat.length === 0) {
+                alert("The boat cannot move empty!");
+                return;
+            }
+            let boat = document.getElementById("boat");
+            boat.classList.toggle("left");
+            boat.classList.toggle("right");
+            boatOnRight = !boatOnRight;
+        }
+
+        function moveCharacter(id) {
+            let character = document.getElementById(id);
+            if (charactersOnBoat.includes(id)) {
+                charactersOnBoat.splice(charactersOnBoat.indexOf(id), 1);
+                character.style.left = boatOnRight ? "600px" : "100px";
+            } else {
+                if (charactersOnBoat.length < 2) {
+                    charactersOnBoat.push(id);
+                    character.style.left = "350px";
+                    character.style.top = "250px";
+                } else {
+                    alert("Only 2 characters can be on the boat at a time!");
+                }
+            }
+        }
+    </script>
+</body>
+</html>
