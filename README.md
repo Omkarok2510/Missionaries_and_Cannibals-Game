@@ -16,3 +16,29 @@ Click "Move Boat" to cross the river.
 Follow the rules to ensure everyone reaches the other side safely.
 
 Win when all 3 missionaries & 3 cannibals are across!
+
+🛠️ Installation
+Clone the repository:
+
+bash
+Copy
+Edit
+git clone https://github.com/YOUR_GITHUB_USERNAME/Missionaries-and-Cannibals-Game.git
+cd Missionaries-and-Cannibals-Game
+Run the game:
+
+bash
+Copy
+Edit
+python missionaries_cannibals.py
+📌 Features
+✅ Graphical UI using Tkinter 🎨
+✅ Drag & Drop functionality 🚀
+✅ Boat movement animation ⛵
+✅ Win/Loss conditions implemented 💀🎉
+
+📷 Screenshots
+🚀 Coming soon! (You can add images from your game later!)
+
+📜 License
+This project is open-source under the MIT License.
